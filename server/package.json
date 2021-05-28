@@ -1,23 +1,27 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "Server for the EnSpeak app",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Vladimír Vávra",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "connect-mongo": "^4.4.1",
-    "dotenv": "^9.0.2",
-    "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "mongoose": "^5.12.10",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "sass": "^1.32.13"
-  }
+   "name": "server",
+   "version": "1.0.0",
+   "description": "Server for the EnSpeak app",
+   "main": "index.js",
+   "scripts": {
+      "start": "nodemon index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "Vladimír Vávra",
+   "license": "ISC",
+   "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "body-parser": "^1.19.0",
+      "connect-mongo": "^3.2.0",
+      "connect-mongodb-session": "^2.4.1",
+      "dotenv": "^9.0.2",
+      "express": "^4.17.1",
+      "express-session": "^1.17.2",
+      "mongoose": "^5.12.10",
+      "mongoose-auto-increment-reworked": "^1.2.1",
+      "passport": "^0.4.1",
+      "passport-local": "^1.0.0",
+      "sass": "^1.32.13",
+      "uuid": "^8.3.2"
+   }
 }
