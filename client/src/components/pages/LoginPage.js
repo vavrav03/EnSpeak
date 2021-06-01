@@ -1,17 +1,18 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
 import {
    createMuiTheme,
    TextField,
    ThemeProvider,
    Link,
-   Typography,
    makeStyles,
 } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";
 import Separator from "components/atoms/Separator";
 import SocialMedia from "components/molecules/SocialMedia";
 import SignFormHeadding from "components/molecules/SignFormHeadding";
+import { SignInButton } from "components/atoms/Button";
+import { SignInFormFooter } from "components/molecules/SignFormFooter";
+import { SignFormInput } from "components/atoms/Input";
 
 const theme = createMuiTheme({
    typography: {
@@ -69,55 +70,29 @@ function App() {
    const classes = useStyles();
    return (
       <ThemeProvider theme={theme}>
-         <div
-            style={{
-               position: "fixed",
-               height: "100vh",
-               width: "100vw",
-               zIndex: "1",
-            }}
-         ></div>
          <div className={classes.pageContainer}>
             <div className={classes.container}>
                <div className={classes.formContainer}>
                   <SignFormHeadding />
                   <SocialMedia />
                   <Separator />
-                  <TextField
-                     variant="outlined"
-                     fullWidth
+                  <SignFormInput
                      label="Email Address"
                      name="email"
                      type="email"
                      autoComplete="email"
                      autoFocus
                   />
-                  <TextField
+                  <SignFormInput
                      variant="outlined"
                      fullWidth
                      label="Password"
                      name="password"
                      type="password"
                   />
-                  <Button
-                     fullWidth
-                     variant="contained"
-                     color="primary"
-                     className={classes.signButton}
-                  >
-                     <Typography variant="body1" className={classes.signButtonText}>
-                        Sign in
-                     </Typography>
-                  </Button>
+                  <SignInButton />
                </div>
-               <div className={classes.functionsContainer}>
-                  <Link variant="body1" href="#">
-                     Forgot password?
-                  </Link>
-                  <Link variant="body1" href="#">
-                     Sign up
-                  </Link>
-               </div>
+               <SignInFormFooter />
             </div>
          </div>
       </ThemeProvider>

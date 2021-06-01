@@ -1,20 +1,21 @@
 import React from "react";
-import {Button, Typography} from '@material-ui/core';
+import { Button, Typography } from "@material-ui/core";
 
-function SignInButton({color, variant, fullWidth}) {
+function SignButton({ text }) {
    return (
-      <Button
-         fullWidth
-         variant={variant ? variant : "outlined"}
-         color={color ? color : "primary"}
-         className={"sign-button"}
-      >
-         <Typography variant="body1" className={classes.signButtonText}>
-            Sign in
-         </Typography>
+      <Button fullWidth variant={"contained"} color={"primary"} className={"sign-button"}>
+         {text}
       </Button>
    );
 }
 
+function SignInButton() {
+   return <SignButton text={"Sign in"} />;
+}
+
+function SignUpButton() {
+   return <SignButton text={"Sign up"} />;
+}
+
 export default Button;
-export 
+export { SignInButton, SignUpButton };

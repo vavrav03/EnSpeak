@@ -1,0 +1,8 @@
+.sign-footer-container {
+   display: flex;
+   justify-content: space-between;
+   & a {
+      text-decoration: none;
+      color: $blue-theme-primary;
+   }
+}
