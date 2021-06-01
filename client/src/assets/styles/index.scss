@@ -1,6 +1,9 @@
-@import './atoms/buttons.scss';
-@import './atoms/icons.scss';
-@import './atoms/separators.scss';
+@import "./atoms/buttons.scss";
+@import "./atoms/icons.scss";
+@import "./atoms/separators.scss";
 
-@import './environment/general.scss';
-@import './environment/variables.scss';
+@import "./molecules/social-media.scss";
+@import "./molecules/headdings.scss";
+
+@import "./environment/general.scss";
+@import "./environment/variables.scss";

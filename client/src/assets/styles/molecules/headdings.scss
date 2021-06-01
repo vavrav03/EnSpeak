@@ -1,0 +1,9 @@
+.sign-form-headding {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   & .lock-icon {
+      margin-bottom: 5px;
+   }
+}

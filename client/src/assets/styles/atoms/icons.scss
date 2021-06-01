@@ -12,7 +12,6 @@
 }
 .social-icon {
    @extend .rounded-icon;
-   margin: 0 7px;
    border: 1px solid;
    transition: 0.3s;
    &:hover {
