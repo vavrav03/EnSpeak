@@ -1,0 +1,47 @@
+@import "../environment/variables.scss";
+.rounded-icon {
+   height: 46px;
+   width: 46px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 50%;
+   text-decoration: none;
+   cursor: pointer;
+   font-size: 1.1rem;
+}
+.social-icon {
+   @extend .rounded-icon;
+   margin: 0 7px;
+   border: 1px solid;
+   transition: 0.3s;
+   &:hover {
+      filter: brightness(45%);
+   }
+}
+
+.facebook-f-icon {
+   color: $facebook-color;
+   border-color: $facebook-color;
+}
+
+.google-icon {
+   color: $google-color;
+   border-color: $google-color;
+}
+
+.twitter-icon {
+   color: $twitter-color;
+   border-color: $twitter-color;
+}
+
+.linkedin-in-icon {
+   color: $linkedin-in-color;
+   border-color: $linkedin-in-color;
+}
+
+.lock-icon {
+   @extend .rounded-icon;
+   background-color: $blue-theme-primary;
+   color: white;
+}
