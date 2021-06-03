@@ -3,12 +3,11 @@
    flex-direction: column;
    width: 100%;
    max-width: 400px;
-}
-.sign-form-container form {
-   padding: 25px 30px 30px 30px;
-   display: grid;
-   grid-row-gap: 25px;
-   box-shadow: 0 0 2px 2px #d4d4d4;
-   border-radius: 4px;
-   margin-bottom: 30px;
+
+   & form {
+      padding: 25px 30px 30px 30px;
+      box-shadow: 0 0 2px 2px #d4d4d4;
+      border-radius: 4px;
+      margin-bottom: 30px;
+   }
 }

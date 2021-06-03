@@ -1,37 +1,13 @@
 import React from "react";
-import {
-   createMuiTheme,
-   TextField,
-   ThemeProvider,
-   Link,
-   makeStyles,
-} from "@material-ui/core";
-import blue from "@material-ui/core/colors/blue";
-import Separator from "components/atoms/Separator";
-import SocialMedia from "components/molecules/SocialMedia";
-import SignFormHeadding from "components/molecules/SignFormHeadding";
-import { SignInButton } from "components/atoms/Button";
-import { SignInFormFooter } from "components/molecules/SignFormFooter";
-import { SignFormInput } from "components/atoms/Input";
-import SignInForm from "components/organisms/SignInForm";
+import { SignInForm } from "components/organisms/SignForms";
 
-const theme = createMuiTheme({
-   typography: {
-      fontFamily: ["Roboto", "Arial"],
-   },
-   palette: {
-      primary: blue,
-   },
-});
-
-function App() {
+function SignInPage() {
    return (
-      <ThemeProvider theme={theme}>
-         <div className={"center-in-viewport"}>
-            <SignInForm />
-         </div>
-      </ThemeProvider>
+      <div className={"center-in-viewport"}>
+         <SignInForm />
+      </div>
    );
 }
 
-export default App;
+export default SignInPage;
+export { SignInPage };

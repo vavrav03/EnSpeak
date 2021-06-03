@@ -8,8 +8,8 @@ function SignFormFooter({ children }) {
 function SignInFormFooter() {
    return (
       <SignFormFooter>
-         <Link to="#" >Forgot password?</Link>
-         <Link to="#">Sign up</Link>
+         <Link to="/forgot" >Forgot password?</Link>
+         <Link to="/register">Sign up</Link>
       </SignFormFooter>
    );
 }
@@ -17,7 +17,8 @@ function SignInFormFooter() {
 function SignUpFormFooter() {
    return (
       <SignFormFooter>
-         <Link to="#">Already have an account? Sign in!</Link>
+         <span></span>
+         <Link to="/login">Already have an account? Sign in!</Link>
       </SignFormFooter>
    );
 }
