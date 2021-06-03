@@ -18,3 +18,4 @@ function SocialMedia() {
 }
 
 export default SocialMedia;
+export { SocialMedia };

@@ -12,3 +12,4 @@ function SignFormHeadding() {
 }
 
 export default SignFormHeadding;
+export { SignFormHeadding };

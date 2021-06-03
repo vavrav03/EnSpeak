@@ -5,7 +5,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router";
 import ReactNotification from "react-notifications-component";
 import HomePage from "components/pages/HomePage";
-import LoginPage from "components/pages/LoginPage";
+import SignInPage from "components/pages/SignInPage";
 
 function App({ history, store }) {
    return (
@@ -16,7 +16,7 @@ function App({ history, store }) {
                <div className="main">
                   <Switch>
                      <Route exact path="/" component={HomePage} />
-                     <Route path="/login" component={LoginPage} />
+                     <Route path="/login" component={SignInPage} />
                   </Switch>
                </div>
             </div>
