@@ -3,7 +3,13 @@ import { Button, Typography } from "@material-ui/core";
 
 function SignButton({ text }) {
    return (
-      <Button fullWidth variant={"contained"} color={"primary"} className={"sign-button"}>
+      <Button
+         fullWidth
+         variant={"contained"}
+         color={"primary"}
+         className={"sign-button"}
+         type="submit"
+      >
          {text}
       </Button>
    );
