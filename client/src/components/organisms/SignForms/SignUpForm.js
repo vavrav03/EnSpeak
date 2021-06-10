@@ -1,99 +1,18 @@
-import { Checkbox, FormControlLabel, Grid } from "@material-ui/core";
-import { SignInButton, SignUpButton } from "components/atoms/Button";
+import { Grid } from "@material-ui/core";
+import { SignUpButton } from "components/atoms/Button";
 import { PasswordFormInput, SignFormInput } from "components/atoms/Input";
 import { Separator } from "components/atoms/Separator";
-import { SignInFormFooter, SignUpFormFooter } from "components/molecules/SignFormFooter";
-import {
-   SignInFormHeadding,
-   SignUpFormHeadding,
-} from "components/molecules/SignFormHeadding";
+import { SignUpFormFooter } from "components/molecules/SignFormFooter";
+import { SignUpFormHeadding } from "components/molecules/SignFormHeadding";
 import { SocialMedia } from "components/molecules/SocialMedia";
 import React from "react";
 
-import { Formik, Field, Form, FastField } from "formik";
+import { Formik, Form, FastField } from "formik";
 import * as Yup from "yup";
+import { attemptRegister } from "redux/actions/auth";
+import { connect } from "react-redux";
 
-function SignInForm() {
-   return (
-      <div className={"sign-form-container sign-in"}>
-         <Formik
-            initialValues={{
-               email: "",
-               password: "",
-               rememberMe: false,
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-               setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  setSubmitting(false);
-               }, 400);
-            }}
-         >
-            <Form>
-               <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                     <SignInFormHeadding />
-                  </Grid>
-                  <Grid item xs={12}>
-                     <SocialMedia />
-                  </Grid>
-                  <Grid item xs={12}>
-                     <Separator />
-                  </Grid>
-                  <Grid item xs={12}>
-                     <FastField name="email">
-                        {({ field, form, meta }) => (
-                           <SignFormInput
-                              label="Email Address"
-                              name="email"
-                              type="email"
-                              autoComplete="email"
-                              autoFocus
-                              inputProps={{ ...field }}
-                           />
-                        )}
-                     </FastField>
-                  </Grid>
-                  <Grid item xs={12}>
-                     <FastField name="password">
-                        {({ field, form, meta }) => (
-                           <PasswordFormInput
-                              label="Password"
-                              name="password"
-                              inputProps={{ ...field }}
-                           />
-                        )}
-                     </FastField>
-                  </Grid>
-                  <Grid item xs={12} className={"remember-me-container"}>
-                     <FastField name="rememberMe">
-                        {({ field, form, meta }) => (
-                           <FormControlLabel
-                              control={
-                                 <Checkbox
-                                    value="rememberMe"
-                                    color="primary"
-                                    inputProps={{ ...field }}
-                                    checked={field.value}
-                                 />
-                              }
-                              label="Remember me"
-                           />
-                        )}
-                     </FastField>
-                  </Grid>
-                  <Grid item xs={12}>
-                     <SignInButton />
-                  </Grid>
-               </Grid>
-            </Form>
-         </Formik>
-         <SignInFormFooter />
-      </div>
-   );
-}
-
-function SignUpForm() {
+function SignUpForm({ onSubmit }) {
    return (
       <div className={"sign-form-container sign-up"}>
          <Formik
@@ -114,12 +33,7 @@ function SignUpForm() {
                      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
                   ),
             })}
-            onSubmit={(values, { setSubmitting }) => {
-               setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  setSubmitting(false);
-               }, 400);
-            }}
+            onSubmit={onSubmit}
          >
             <Form>
                <Grid container spacing={3}>
@@ -216,5 +130,19 @@ function SignUpForm() {
    );
 }
 
-export default SignInForm;
-export { SignInForm, SignUpForm };
+const mapStateToProps = () => {
+   return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      onSubmit: (data, { setSubmitting }) => {
+         dispatch(attemptRegister(data));
+      },
+   };
+};
+
+const ConnectedSignUpForm = connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
+
+export default ConnectedSignUpForm;
+export { SignUpForm, ConnectedSignUpForm };

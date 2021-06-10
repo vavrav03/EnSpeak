@@ -9,7 +9,6 @@ function SocialIcon({ divClassName, iconClassName, onClick, ...rest }) {
 }
 
 function SocialIconCreator({ companyName, onClick, ...rest }) {
-   console.log(rest);
    return (
       <SocialIcon
          divClassName={`social-icon ${companyName}-icon`}

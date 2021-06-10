@@ -1,10 +1,10 @@
 import React from "react";
-import { SignUpForm } from "components/organisms/SignForms";
+import { ConnectedSignUpForm } from "components/organisms/SignForms/SignUpForm";
 
 function SignUpPage() {
    return (
       <div className={"center-in-viewport"}>
-         <SignUpForm />
+         <ConnectedSignUpForm />
       </div>
    );
 }

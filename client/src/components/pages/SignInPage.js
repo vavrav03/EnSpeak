@@ -1,10 +1,10 @@
 import React from "react";
-import { SignInForm } from "components/organisms/SignForms";
+import { ConnectedSignInForm } from "components/organisms/SignForms/SignInForm";
 
 function SignInPage() {
    return (
       <div className={"center-in-viewport"}>
-         <SignInForm />
+         <ConnectedSignInForm />
       </div>
    );
 }

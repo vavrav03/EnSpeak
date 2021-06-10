@@ -30,7 +30,10 @@ router.post("/register", (req, res) => {
             if (err || !savedUser) {
                res.status(400).send({ message: "Create user failed", err });
             } else {
-               res.send({ message: "User created successfully", user: savedUser.hidePassword() });
+               res.send({
+                  message: "User created successfully",
+                  user: savedUser.hidePassword(),
+               });
             }
          });
       });
@@ -38,6 +41,7 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res, next) => {
+   console.log(req.body)
    req.body.username = req.body.username.toLowerCase();
 
    passport.authenticate("local", (err, user, info) => {
