@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import App from "components/environment/App";
 import { store } from "redux/store";
 import history from "./history";
-import d from "config/environment"
 
 import "assets/styles/index.scss";
 

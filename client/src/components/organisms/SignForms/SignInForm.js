@@ -92,9 +92,8 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      onSubmit: (data, { setSubmitting }) => {
-         console.log(data);
-         dispatch(attemptLogin(data));
+      onSubmit: (formData, { setSubmitting }) => {
+         dispatch(attemptLogin(formData));
       },
    };
 };

@@ -1,22 +1,20 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import { connectRouter, routerMiddleware } from "connected-react-router";
+import { createStore, applyMiddleware } from "redux";
+import { routerMiddleware } from "connected-react-router";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { createRootReducer } from "./reducers";
 import history from "../history";
-import thunk from 'redux-thunk'
+import thunk from "redux-thunk";
 
-export default function configureStore(history) {
-   const rootReducer = combineReducers({
-      router: connectRouter(history),
-   });
-
+export const configureStore = (history) => {
    const functionMiddleware = [];
 
    const coreMiddleware = [routerMiddleware(history), thunk];
 
    return createStore(
-      rootReducer,
+      createRootReducer(history),
       composeWithDevTools(applyMiddleware(...functionMiddleware, ...coreMiddleware))
    );
-}
+};
 export const store = configureStore(history);
-export const dispatch = store.dispatch;
+export const dispatch = store.dispatch;;
+export default store;

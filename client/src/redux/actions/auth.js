@@ -1,6 +1,6 @@
 import { postRegister, postLogin, postLogout } from "api/auth";
-import { push } from "connected-react-router";
-import { dispatchError } from "./general";
+import { responseError } from "./error";
+import { toHomePage, toLoginPage } from "./redirect";
 
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
@@ -28,26 +28,25 @@ export const updateUser = (user) => {
 
 export const attemptLogin = (user) => (dispatch) =>
    postLogin(user)
-      .then((data) => {
+      .then((response) => {
+         const { data } = response;
          dispatch(login(data.user));
-         dispatch(push("/home"));
-         return data;
+         dispatch(toHomePage());
       })
-      .catch(dispatchError(dispatch));
+      .catch((err) => dispatch(responseError(err.response, err.response.data.message)));
 
 export const attemptRegister = (newUser) => (dispatch) =>
    postRegister(newUser)
-      .then((data) => {
-         return dispatch(attemptLogin(newUser));
+      .then((response) => {
+         dispatch(attemptLogin(newUser));
       })
-      .then(() => dispatch(push("/home")))
-      .catch(dispatchError(dispatch));
+      .then(() => dispatch(toHomePage()))
+      .catch((err) => dispatch(responseError(err.response, err.response.data.message)));
 
 export const attemptLogout = () => (dispatch) =>
    postLogout()
-      .then((data) => {
+      .then((response) => {
          dispatch(logout());
-         dispatch(push("/login"));
-         return data;
+         dispatch(toLoginPage());
       })
-      .catch(dispatchError(dispatch));
+      .catch((res) => dispatch(responseError(res)));
