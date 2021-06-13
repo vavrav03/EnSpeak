@@ -2,9 +2,9 @@ import { Checkbox, FormControlLabel, Grid } from "@material-ui/core";
 import { SignInButton } from "components/atoms/Button";
 import { PasswordFormInput, SignFormInput } from "components/atoms/Input";
 import { Separator } from "components/atoms/Separator";
-import { SignInFormFooter } from "components/molecules/SignFormFooter";
+import { ConnectedSignInFormFooter, SignInFormFooter } from "components/molecules/SignFormFooter";
 import { SignInFormHeadding } from "components/molecules/SignFormHeadding";
-import { SocialMedia } from "components/molecules/SocialMedia";
+import { ConnectedSocialMedia } from "components/molecules/SocialMedia";
 import React from "react";
 
 import { Formik, Form, FastField } from "formik";
@@ -28,7 +28,7 @@ function SignInForm({ onSubmit }) {
                      <SignInFormHeadding />
                   </Grid>
                   <Grid item xs={12}>
-                     <SocialMedia />
+                     <ConnectedSocialMedia />
                   </Grid>
                   <Grid item xs={12}>
                      <Separator />
@@ -81,7 +81,7 @@ function SignInForm({ onSubmit }) {
                </Grid>
             </Form>
          </Formik>
-         <SignInFormFooter />
+         <ConnectedSignInFormFooter />
       </div>
    );
 }

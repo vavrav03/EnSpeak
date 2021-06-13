@@ -5,17 +5,35 @@ import {
    LinkedInSocialIcon,
    TwitterSocialIcon,
 } from "components/atoms/SocialIcon";
+import { notImplementedYet } from "redux/actions/error";
+import { connect } from "react-redux";
 
-function SocialMedia() {
+function SocialMedia({showNotImplementedYet}) {
    return (
       <div className={"social-media"}>
-         <FacebookSocialIcon />
-         <TwitterSocialIcon />
-         <GoogleSocialIcon />
-         <LinkedInSocialIcon />
+         <a href="/api/auth/facebook">
+            <FacebookSocialIcon />
+         </a>
+         <div onClick={showNotImplementedYet}>
+            <TwitterSocialIcon />
+         </div>
+         <a href="/api/auth/google">
+            <GoogleSocialIcon />
+         </a>
+         <div onClick={showNotImplementedYet}>
+            <LinkedInSocialIcon />
+         </div>
       </div>
    );
 }
 
-export default SocialMedia;
-export { SocialMedia };
+const mapDispatchToProps = (dispatch) => {
+   return {
+      showNotImplementedYet: () => dispatch(notImplementedYet())
+   }
+}
+
+const ConnectedSocialMedia = connect(null, mapDispatchToProps)(SocialMedia);
+
+export default ConnectedSocialMedia;
+export { ConnectedSocialMedia, SocialMedia };

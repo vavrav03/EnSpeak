@@ -4,7 +4,7 @@ import { PasswordFormInput, SignFormInput } from "components/atoms/Input";
 import { Separator } from "components/atoms/Separator";
 import { SignUpFormFooter } from "components/molecules/SignFormFooter";
 import { SignUpFormHeadding } from "components/molecules/SignFormHeadding";
-import { SocialMedia } from "components/molecules/SocialMedia";
+import { ConnectedSocialMedia } from "components/molecules/SocialMedia";
 import React from "react";
 
 import { Formik, Form, FastField } from "formik";
@@ -41,7 +41,7 @@ function SignUpForm({ onSubmit }) {
                      <SignUpFormHeadding />
                   </Grid>
                   <Grid item xs={12}>
-                     <SocialMedia />
+                     <ConnectedSocialMedia />
                   </Grid>
                   <Grid item xs={12}>
                      <Separator />

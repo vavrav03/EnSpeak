@@ -85,7 +85,6 @@ Strategies.facebook = new FacebookStrategy(
       profileFields: ['id', 'emails', 'name', 'displayName', 'photos']
    },
    (accessToken, refreshToken, profile, done) => {
-      console.log(profile)
       const { id, emails, name, photos } = profile;
       const email = emails[0].value;
       const { givenName, familyName } = name;
