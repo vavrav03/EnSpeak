@@ -1,4 +1,5 @@
 @import "../environment/variables.scss";
+
 .rounded-icon {
    height: 46px;
    width: 46px;
@@ -43,4 +44,22 @@
    @extend .rounded-icon;
    background-color: $blue-theme-primary;
    color: white;
+}
+
+.user-status-container {
+   &.online span {
+      background-color: $online-color;
+      color: $online-color;
+   }
+   &.idle span {
+      background-color: $idle-color;
+      color: $idle-color;
+   }
+   &.offline span {
+      background-color: $offline-color;
+      color: $offline-color;
+   }
+   & span {
+      box-shadow: 0 0 0 2px #e2e2e2;
+   }
 }

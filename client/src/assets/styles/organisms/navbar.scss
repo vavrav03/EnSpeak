@@ -1,0 +1,56 @@
+.children-margin-left-10 > * {
+   margin-left: 10px;
+}
+
+.user-navbar-card {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: nowrap;
+
+   & > button {
+      text-transform: none;
+   }
+
+   & .user-info-container {
+      margin-right: 10px;
+      text-align: right
+   }
+
+   & .user-name {
+      font-size: 13px;
+      font-weight: bold;
+   }
+
+   & .user-role {
+      font-size: 12px;
+   }
+}
+
+.user-card-menu {
+   & .list-item {
+      width: 35px;
+      & .status-ball {
+         margin-left: 5px;
+      }
+   }
+}
+
+.status-ball {
+   height: 10px;
+   width: 10px;
+   border-radius: 50%;
+}
+
+.online-this {
+   background-color: $online-color;
+   color: $online-color;
+}
+.idle-this {
+   background-color: $idle-color;
+   color: $idle-color;
+}
+.offline-this {
+   background-color: $offline-color;
+   color: $offline-color;
+}

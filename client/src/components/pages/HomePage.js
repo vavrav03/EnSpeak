@@ -1,7 +1,8 @@
 import React from "react";
+import {NormalPage} from "components/templates/NormalPage";
 
 function HomePage() {
-   return <div></div>;
+   return <NormalPage></NormalPage>;
 }
 
 export default HomePage;

@@ -7,6 +7,11 @@
    font-family: Roboto, sans-serif;
 }
 
+html, body {
+   width: 100%;
+   height: 100%;
+}
+
 .center-children {
    display: flex;
    align-items: center;
