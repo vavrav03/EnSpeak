@@ -5,5 +5,5 @@ export const toLoginPage = () => {
 };
 
 export const toHomePage = () => {
-   return push("/home");
+   return push("/");
 };

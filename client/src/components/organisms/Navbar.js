@@ -8,6 +8,9 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import Grid from "@material-ui/core/Grid";
 
 import UserNavbarCard from "components/molecules/UserNavbarCard";
+import { connect } from "react-redux";
+import { notImplementedYet } from "redux/actions/error";
+import { attemptLogout } from "redux/actions/auth";
 
 function Navbar({ isSidebarOpen, menuButtonAction }) {
    return (
@@ -47,5 +50,14 @@ function Navbar({ isSidebarOpen, menuButtonAction }) {
    );
 }
 
-export default Navbar;
-export { Navbar };
+const mapDispatchToProps = (dispatch) => {
+   return {
+      showNotImplementedYet: () => dispatch(notImplementedYet()),
+      attemptLogout: () => dispatch(attemptLogout()),
+   };
+};
+
+const ConnectedNavbar = connect(null, mapDispatchToProps)(Navbar);
+
+export default ConnectedNavbar;
+export { ConnectedNavbar, Navbar };

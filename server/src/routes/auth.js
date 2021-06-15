@@ -11,14 +11,13 @@ router.post("/register", (req, res) => {
       res.status(400).send({ message: "Username and Password required" });
    }
 
-   const { first_name, last_name, email, password } = req.body;
-
    const newUser = User({
-      ...req.body,
+      email: req.body.email,
       first_name: req.body.firstName,
       last_name: req.body.lastName,
    });
-   User.find({ email }, (err, users) => {
+   newUser.auth.local.password = req.body.password
+   User.find({ email: req.body.email }, (err, users) => {
       if (err) {
          res.status(400).send({ message: "Creating user failed", err });
       }

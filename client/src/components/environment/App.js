@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
@@ -11,7 +11,7 @@ import { SignUpPage } from "components/pages/SignUpPage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";
 import { getNotifications } from "redux/selectors";
-import ProtectedRoute from "./ProtectedRoute";
+import { attemptUpdateUser } from "redux/actions/user";
 
 const theme = createMuiTheme({
    typography: {
@@ -22,8 +22,13 @@ const theme = createMuiTheme({
    },
 });
 
-function App({ history, store, notifications }) {
-   return (
+function App({ history, store, notifications, isLoading, email, attemptUpdateUser }) {
+   useEffect(() => {
+      attemptUpdateUser();
+   }, []);
+   return isLoading && !email ? (
+      <div>Loading</div>
+   ) : (
       <ThemeProvider theme={theme}>
          <Provider store={store}>
             <Notifications notifications={notifications} />
@@ -32,7 +37,6 @@ function App({ history, store, notifications }) {
                   <div className="main">
                      <Switch>
                         <Route exact path="/" component={HomePage} />
-                        <ProtectedRoute path="/settings" component={HomePage} />
                         <Route path="/login" component={SignInPage} />
                         <Route path="/register" component={SignUpPage} />
                      </Switch>
@@ -52,10 +56,18 @@ App.propTypes = {
 const mapStateToProps = (state) => {
    return {
       notifications: getNotifications(state),
+      isLoading: state.user.isLoading,
+      email: state.user.email,
    };
 };
 
-const ConnectedApp = connect(mapStateToProps, null)(App);
+const mapDispatchToProps = (dispatch) => {
+   return {
+      attemptUpdateUser: () => dispatch(attemptUpdateUser()),
+   };
+};
+
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default ConnectedApp;
 export { App, ConnectedApp };

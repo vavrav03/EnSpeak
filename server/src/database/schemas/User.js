@@ -18,6 +18,14 @@ const userSchema = new Schema(
          type: String,
          required: true,
       },
+      role: {
+         type: String,
+         default: "Admin",
+      },
+      status: {
+         type: String,
+         default: "Offline",
+      },
       profile_picture: { type: String },
       auth: {
          local: {
@@ -80,7 +88,7 @@ userSchema.virtual("initials").get(function () {
 });
 
 userSchema.methods.isPasswordValid = function (password) {
-   return bcrypt.compareSync(password, this.password);
+   return bcrypt.compareSync(password, this.auth.local.password);
 };
 
 userSchema.methods.hashPassword = function () {
@@ -89,11 +97,12 @@ userSchema.methods.hashPassword = function () {
          if (err1) {
             reject(err1);
          }
-         bcrypt.hash(this.password, salt, (err2, hash) => {
+         console.log(this.auth.local.password, salt)
+         bcrypt.hash(this.auth.local.password, salt, (err2, hash) => {
             if (err2) {
                reject(err2);
             }
-            this.password = hash;
+            this.auth.local.password = hash;
             resolve(hash);
          });
       });

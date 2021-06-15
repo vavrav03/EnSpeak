@@ -6,8 +6,23 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import { attemptLogout } from "redux/actions/auth";
+import { notImplementedYet } from "redux/actions/error";
+import { attemptSetIdle, attemptSetOffline, attemptSetOnline } from "redux/actions/user";
+import { connect } from "react-redux";
 
-function UserNavbarCard({ firstName, lastName, role, status, imageUrl }) {
+function UserNavbarCard({
+   firstName,
+   lastName,
+   role,
+   status,
+   imageUrl,
+   attemptLogout,
+   showNotImplementedYet,
+   attemptSetOnline,
+   attemptSetOffline,
+   attemptSetIdle,
+}) {
    const [anchorEl, setAnchorEl] = React.useState(null);
 
    const handleClick = (event) => {
@@ -36,31 +51,31 @@ function UserNavbarCard({ firstName, lastName, role, status, imageUrl }) {
             transformOrigin={{ vertical: "top", horizontal: "center" }}
             onClose={handleClose}
          >
-            <MenuItem>
+            <MenuItem onClick={attemptSetOnline}>
                <div className="list-item">
                   <div className="status-ball online-this"></div>
                </div>
                <Typography variant="inherit">Online</Typography>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={attemptSetIdle}>
                <div className="list-item">
                   <div className="status-ball idle-this" fontSize="small"></div>
                </div>
                <Typography variant="inherit">Idle</Typography>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={attemptSetOffline}>
                <div className="list-item">
                   <div className="status-ball offline-this" fontSize="small"></div>
                </div>
                <Typography variant="inherit">Offline</Typography>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={showNotImplementedYet}>
                <div className="list-item">
                   <PersonOutlineIcon fontSize="small" />
                </div>
                <Typography variant="inherit">Your profile</Typography>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={attemptLogout}>
                <div className="list-item">
                   <ExitToAppIcon fontSize="small" />
                </div>
@@ -71,5 +86,17 @@ function UserNavbarCard({ firstName, lastName, role, status, imageUrl }) {
    );
 }
 
-export default UserNavbarCard;
-export { UserNavbarCard };
+const mapDispatchToProps = (dispatch) => {
+   return {
+      attemptSetOnline: () => dispatch(attemptSetOnline()),
+      attemptSetIdle: () => dispatch(attemptSetIdle()),
+      attemptSetOffline: () => dispatch(attemptSetOffline()),
+      showNotImplementedYet: () => dispatch(notImplementedYet()),
+      attemptLogout: () => dispatch(attemptLogout()),
+   };
+};
+
+const ConnectedUserNavbarCard = connect(null, mapDispatchToProps)(UserNavbarCard);
+
+export default ConnectedUserNavbarCard;
+export { UserNavbarCard, ConnectedUserNavbarCard };

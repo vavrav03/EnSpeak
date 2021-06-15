@@ -12,7 +12,7 @@ export const configureStore = (history) => {
 
    return createStore(
       createRootReducer(history),
-      composeWithDevTools(applyMiddleware(...functionMiddleware, ...coreMiddleware))
+      composeWithDevTools({trace: true})(applyMiddleware(...functionMiddleware, ...coreMiddleware))
    );
 };
 export const store = configureStore(history);

@@ -19,6 +19,11 @@ Strategies.local = new LocalStrategy(
          if (!user) {
             return done(null, false, { message: "Email doesn't exist" });
          }
+         if (!user.auth.local.password) {
+            return done(null, false, {
+               message: "Login in with appropriate social provider or register",
+            });
+         }
          if (!user.isPasswordValid(password)) {
             return done(null, false, { message: "Incorrect email or password" });
          }
@@ -82,7 +87,7 @@ Strategies.facebook = new FacebookStrategy(
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
       callbackURL: "/api/auth/facebook/callback",
       proxy: true,
-      profileFields: ['id', 'emails', 'name', 'displayName', 'photos']
+      profileFields: ["id", "emails", "name", "displayName", "photos"],
    },
    (accessToken, refreshToken, profile, done) => {
       const { id, emails, name, photos } = profile;

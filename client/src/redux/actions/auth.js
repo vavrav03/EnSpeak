@@ -4,7 +4,6 @@ import { toHomePage, toLoginPage } from "./redirect";
 
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
-export const UPDATE_USER = "UPDATE_USER";
 
 export const login = (user) => {
    return {
@@ -16,13 +15,6 @@ export const login = (user) => {
 export const logout = () => {
    return {
       type: LOGOUT_USER,
-   };
-};
-
-export const updateUser = (user) => {
-   return {
-      type: UPDATE_USER,
-      user,
    };
 };
 

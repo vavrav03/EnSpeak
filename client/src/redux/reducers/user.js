@@ -1,17 +1,22 @@
 // import update from "immutability-helper";
-import { LOGIN_USER, LOGOUT_USER, UPDATE_USER } from "../actions/auth";
+import { LOGIN_USER, LOGOUT_USER } from "../actions/auth";
+import { UPDATE_USER, SET_STATUS, START_LOADING_USER } from "../actions/user";
 import _ from "lodash";
 
-export default function user(state = {}, action) {
+export default function user(user = {isLoading: true}, action) {
    switch (action.type) {
+      case START_LOADING_USER:
+         return { ...user, isLoading: true };
       case LOGIN_USER:
          return action.user;
       case LOGOUT_USER:
          return {};
       case UPDATE_USER:
-         break;
+         return action.user;
+      case SET_STATUS:
+         return { ...user, status: action.status };
       default:
-         return state;
+         return user;
    }
 }
 
@@ -19,8 +24,17 @@ export const getUser = (state) => {
    return state.user;
 };
 
-export const isLoggedIn = (state) => {
-   return user && !_.isEmpty(state.user);
+export const getUserEmail = (state) => {
+   return state.user.email
 };
+
+export const isLoading = (state) => {
+   return state.user.isLoading;
+};
+
+export const isLoadingForTheFirstTime = (state) => {
+   console.log(state);
+   return isLoading(state) && !state.user.email
+}
 
 export { user };
