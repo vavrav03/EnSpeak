@@ -13,8 +13,11 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import SettingsIcon from '@material-ui/icons/Settings';
 import EventIcon from '@material-ui/icons/Event';
 import ListIcon from '@material-ui/icons/List';
+import { connect } from "react-redux";
+import { notImplementedYet } from "redux/actions/error";
+import { attemptLogout } from "redux/actions/auth";
 
-function Sidebar({ open, closeSidebar }) {
+function Sidebar({ open, closeSidebar, showNotImplementedYet, attemptLogout }) {
    return (
       <Drawer variant="persistent" anchor="left" open={open}>
          <div className={"sidebar"}>
@@ -27,15 +30,15 @@ function Sidebar({ open, closeSidebar }) {
             <Divider />
             <List>
                <ListSubheader>MEETINGS</ListSubheader>
-               <ListItem button key={"Meeting offers"}>
+               <ListItem onClick={showNotImplementedYet} button key={"Meeting offers"}>
                   <ListItemIcon className="sidebar-list-item"><ListIcon /></ListItemIcon>
                   <ListItemText primary={"Offers"} />
                </ListItem>
-               <ListItem button key={"Meeting reservations"}>
+               <ListItem onClick={showNotImplementedYet} button key={"Meeting reservations"}>
                   <ListItemIcon className="sidebar-list-item"><EventIcon /></ListItemIcon>
                   <ListItemText primary={"Reservations"} />
                </ListItem>
-               <ListItem button key={"A lot of other things"}>
+               <ListItem onClick={showNotImplementedYet} button key={"A lot of other things"}>
                   <ListItemIcon className="sidebar-list-item"><ForumIcon /></ListItemIcon>
                   <ListItemText primary={"Other things"} />
                </ListItem>
@@ -43,11 +46,11 @@ function Sidebar({ open, closeSidebar }) {
             <Divider />
             <List>
                <ListSubheader>PROFILE</ListSubheader>
-               <ListItem button key={"Profile settings"}>
+               <ListItem onClick={showNotImplementedYet} button key={"Profile settings"}>
                   <ListItemIcon className="sidebar-list-item"><SettingsIcon /></ListItemIcon>
                   <ListItemText primary={"Settings"} />
                </ListItem>
-               <ListItem button key={"Meeting reservations"}>
+               <ListItem onClick={attemptLogout} button key={"Meeting reservations"}>
                   <ListItemIcon className="sidebar-list-item"><ExitToAppIcon /></ListItemIcon>
                   <ListItemText primary={"Log out"} />
                </ListItem>
@@ -57,5 +60,14 @@ function Sidebar({ open, closeSidebar }) {
    );
 }
 
-export default Sidebar;
-export { Sidebar };
+const mapDispatchToProps = (dispatch) => {
+   return {
+      showNotImplementedYet: () => dispatch(notImplementedYet()),
+      attemptLogout: () => dispatch(attemptLogout()),
+   };
+};
+
+const ConnectedSidebar = connect(null, mapDispatchToProps)(Sidebar);
+
+export default ConnectedSidebar;
+export { Sidebar, ConnectedSidebar };

@@ -16,7 +16,7 @@ router.post("/register", (req, res) => {
       first_name: req.body.firstName,
       last_name: req.body.lastName,
    });
-   newUser.auth.local.password = req.body.password
+   newUser.auth.local.password = req.body.password;
    User.find({ email: req.body.email }, (err, users) => {
       if (err) {
          res.status(400).send({ message: "Creating user failed", err });
@@ -84,6 +84,12 @@ router.get("/facebook/callback", passport.authenticate("facebook"), (req, res) =
 });
 
 router.post("/logout", (req, res) => {
+   const user = User.findByIdAndUpdate(
+      req.user._id,
+      { $set: { status: "offline" } },
+      { new: true },
+      function (err, user) {}
+   );
    req.session.destroy((err) => {
       if (err) {
          res.status(400).send({ message: "Logout failed", err });

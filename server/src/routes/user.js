@@ -8,7 +8,10 @@ const router = express.Router();
 module.exports = router;
 
 router.get("/", requireAuth, (req, res) => {
-   res.send({ message: "User info successfully retreived", user: req.user.toResponseObject() });
+   res.send({
+      message: "User info successfully retreived",
+      user: req.user.toResponseObject(),
+   });
 });
 
 router.put("/password", requireAuth, (req, res) => {
@@ -36,13 +39,21 @@ router.put("/password", requireAuth, (req, res) => {
    }
 });
 
-router.put("/", requireAuth, (req, res) => {
-   req.body.updated_at = Date.now();
-
-   User.findByIdAndUpdate({ _id: req.user._id }, req.body, { new: true }, (err, user) => {
-      if (err) {
-         res.status(400).send({ err, message: "Error updating user" });
+router.patch("/", requireAuth, (req, res) => {
+   let newStatus;
+   if (req.body.status === "online") {
+      newStatus = "online";
+   } else if (req.body.status === "idle") {
+      newStatus = "idle";
+   } else if (req.body.status === "offline") {
+      newStatus = "offline";
+   }
+   const user = User.findByIdAndUpdate(
+      req.user._id ,
+      {$set:{ status: newStatus }},
+      {new: true},
+      function (err, user) {
+         res.send({user: user});
       }
-      res.status(200).send({ message: "User successfully updated", user: user.hidePassword() });
-   });
+   );
 });

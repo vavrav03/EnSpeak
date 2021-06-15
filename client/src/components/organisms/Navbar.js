@@ -37,11 +37,11 @@ function Navbar({ isSidebarOpen, menuButtonAction }) {
                      </Badge>
                   </IconButton>
                   <UserNavbarCard
-                     firstName={"Vladimír"}
-                     lastName={"Vávra"}
-                     role={"admin"}
-                     imageUrl={"https://picsum.photos/200"}
-                     status={"online"}
+                     // firstName={"Vladimír"}
+                     // lastName={"Vávra"}
+                     // role={"admin"}
+                     // imageUrl={"https://picsum.photos/200"}
+                     // status={"online"}
                   />
                </div>
             </Grid>

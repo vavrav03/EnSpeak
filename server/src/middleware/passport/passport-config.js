@@ -12,10 +12,12 @@ module.exports = (app) => {
       session({
          store: new MongoStore({
             mongooseConnection: mongoose.connection,
+            clear_interval: 3600,
             collection: "sessions",
          }),
          genid: () => uuid.v4(),
          secret: process.env.SESSION_SECRET,
+         cookie: { maxAge: 24 * 60 * 60 * 1000 },
          resave: false,
          saveUninitialized: false,
       })

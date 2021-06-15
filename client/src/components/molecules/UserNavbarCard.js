@@ -10,13 +10,14 @@ import { attemptLogout } from "redux/actions/auth";
 import { notImplementedYet } from "redux/actions/error";
 import { attemptSetIdle, attemptSetOffline, attemptSetOnline } from "redux/actions/user";
 import { connect } from "react-redux";
+import { getUser } from "redux/reducers/user";
 
 function UserNavbarCard({
    firstName,
    lastName,
    role,
    status,
-   imageUrl,
+   profilePicture,
    attemptLogout,
    showNotImplementedYet,
    attemptSetOnline,
@@ -39,7 +40,7 @@ function UserNavbarCard({
                <div className="user-name">{`${firstName} ${lastName}`}</div>
                <div className="user-role">{role}</div>
             </div>
-            <UserAvatar imageUrl={imageUrl} status={status}></UserAvatar>
+            <UserAvatar imageUrl={profilePicture} status={status}></UserAvatar>
          </Button>
          <Menu
             className="user-card-menu"
@@ -86,6 +87,17 @@ function UserNavbarCard({
    );
 }
 
+const mapStateToProps = (state) => {
+   const user = getUser(state);
+   return {
+      firstName: user.first_name,
+      lastName: user.last_name,
+      profilePicture: user.profile_picture,
+      status: user.status,
+      role: user.role
+   }
+};
+
 const mapDispatchToProps = (dispatch) => {
    return {
       attemptSetOnline: () => dispatch(attemptSetOnline()),
@@ -96,7 +108,7 @@ const mapDispatchToProps = (dispatch) => {
    };
 };
 
-const ConnectedUserNavbarCard = connect(null, mapDispatchToProps)(UserNavbarCard);
+const ConnectedUserNavbarCard = connect(mapStateToProps, mapDispatchToProps)(UserNavbarCard);
 
 export default ConnectedUserNavbarCard;
 export { UserNavbarCard, ConnectedUserNavbarCard };

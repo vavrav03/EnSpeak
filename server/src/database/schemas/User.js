@@ -24,7 +24,7 @@ const userSchema = new Schema(
       },
       status: {
          type: String,
-         default: "Offline",
+         default: "offline",
       },
       profile_picture: { type: String },
       auth: {

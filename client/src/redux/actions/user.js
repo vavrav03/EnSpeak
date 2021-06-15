@@ -13,13 +13,6 @@ export const updateUser = (user) => {
    };
 };
 
-export const setStatus = (status) => {
-   return {
-      type: SET_STATUS,
-      status,
-   };
-};
-
 export const startLoading = () => {
    return {
       type: START_LOADING_USER,
@@ -31,6 +24,7 @@ export const attemptUpdateUser = () => (dispatch) => {
    getUser()
       .then((response) => {
          const { data } = response;
+         
          dispatch(updateUser(data.user));
       })
       .catch((err) => {
@@ -41,21 +35,22 @@ export const attemptUpdateUser = () => (dispatch) => {
 export const attemptSetOnline = () => (dispatch) => {
    patchSetOnline()
       .then((response) => {
-         dispatch(setStatus("online"));
+         dispatch(updateUser(response.data.user));
       })
       .catch((err) => dispatch(responseError(err.response, err.response.data.message)));
 };
 export const attemptSetIdle = () => (dispatch) => {
    patchSetIdle()
       .then((response) => {
-         dispatch(setStatus("idle"));
+         console.log(response)
+         dispatch(updateUser(response.data.user));
       })
       .catch((err) => dispatch(responseError(err.response, err.response.data.message)));
 };
 export const attemptSetOffline = () => (dispatch) => {
    patchSetOffline()
       .then((response) => {
-         dispatch(setStatus("offline"));
+         dispatch(updateUser(response.data.user));
       })
       .catch((err) => dispatch(responseError(err.response, err.response.data.message)));
 };
