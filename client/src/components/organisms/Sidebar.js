@@ -1,51 +1,61 @@
 import Divider from "@material-ui/core/Divider";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import MailIcon from "@material-ui/icons/Mail";
+import Drawer from "@material-ui/core/Drawer";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import ForumIcon from '@material-ui/icons/Forum';
+import ListSubheader from "@material-ui/core/ListSubheader"
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import SettingsIcon from '@material-ui/icons/Settings';
+import EventIcon from '@material-ui/icons/Event';
+import ListIcon from '@material-ui/icons/List';
 
-function Sidebar() {
+function Sidebar({ open, closeSidebar }) {
    return (
-      <Drawer
-         container={container}
-         variant="temporary"
-         anchor={theme.direction === "rtl" ? "right" : "left"}
-         open={mobileOpen}
-         onClose={handleDrawerToggle}
-         classes={{
-            paper: classes.drawerPaper,
-         }}
-         ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-         }}
-      >
-         <div>
-            <div className={classes.toolbar} />
+      <Drawer variant="persistent" anchor="left" open={open}>
+         <div className={"sidebar"}>
+            <header className="sidebar-header">
+               <Typography variant="h6">EnSpeak</Typography>
+               <IconButton onClick={closeSidebar}>
+                  <ChevronLeftIcon />
+               </IconButton>
+            </header>
             <Divider />
             <List>
-               {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-                  <ListItem button key={text}>
-                     <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                     </ListItemIcon>
-                     <ListItemText primary={text} />
-                  </ListItem>
-               ))}
+               <ListSubheader>MEETINGS</ListSubheader>
+               <ListItem button key={"Meeting offers"}>
+                  <ListItemIcon className="sidebar-list-item"><ListIcon /></ListItemIcon>
+                  <ListItemText primary={"Offers"} />
+               </ListItem>
+               <ListItem button key={"Meeting reservations"}>
+                  <ListItemIcon className="sidebar-list-item"><EventIcon /></ListItemIcon>
+                  <ListItemText primary={"Reservations"} />
+               </ListItem>
+               <ListItem button key={"A lot of other things"}>
+                  <ListItemIcon className="sidebar-list-item"><ForumIcon /></ListItemIcon>
+                  <ListItemText primary={"Other things"} />
+               </ListItem>
             </List>
             <Divider />
             <List>
-               {["All mail", "Trash", "Spam"].map((text, index) => (
-                  <ListItem button key={text}>
-                     <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                     </ListItemIcon>
-                     <ListItemText primary={text} />
-                  </ListItem>
-               ))}
+               <ListSubheader>PROFILE</ListSubheader>
+               <ListItem button key={"Profile settings"}>
+                  <ListItemIcon className="sidebar-list-item"><SettingsIcon /></ListItemIcon>
+                  <ListItemText primary={"Settings"} />
+               </ListItem>
+               <ListItem button key={"Meeting reservations"}>
+                  <ListItemIcon className="sidebar-list-item"><ExitToAppIcon /></ListItemIcon>
+                  <ListItemText primary={"Log out"} />
+               </ListItem>
             </List>
          </div>
       </Drawer>
    );
 }
+
+export default Sidebar;
+export { Sidebar };

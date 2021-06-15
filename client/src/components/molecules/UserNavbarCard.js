@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Typography from "@material-ui/core/Typography";
 import UserAvatar from "components/atoms/UserIcon";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "components/atoms/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 function UserNavbarCard({ firstName, lastName, role, status, imageUrl }) {
    const [anchorEl, setAnchorEl] = React.useState(null);

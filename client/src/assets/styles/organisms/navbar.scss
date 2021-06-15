@@ -1,3 +1,9 @@
+$navbar-height: 64px;
+
+.navbar {
+   height: $navbar-height;
+}
+
 .children-margin-left-10 > * {
    margin-left: 10px;
 }
@@ -10,6 +16,7 @@
 
    & > button {
       text-transform: none;
+      color: white;
    }
 
    & .user-info-container {

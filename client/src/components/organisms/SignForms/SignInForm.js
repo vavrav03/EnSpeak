@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, Grid } from "@material-ui/core";
 import { SignInButton } from "components/atoms/Button";
 import { PasswordFormInput, SignFormInput } from "components/atoms/Input";
 import { Separator } from "components/atoms/Separator";
-import { ConnectedSignInFormFooter, SignInFormFooter } from "components/molecules/SignFormFooter";
+import { ConnectedSignInFormFooter } from "components/molecules/SignFormFooter";
 import { SignInFormHeadding } from "components/molecules/SignFormHeadding";
 import { ConnectedSocialMedia } from "components/molecules/SocialMedia";
 import React from "react";

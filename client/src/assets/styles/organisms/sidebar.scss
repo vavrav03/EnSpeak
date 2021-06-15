@@ -1,0 +1,27 @@
+$sidebar-width: 200px;
+
+.sidebar {
+   & .sidebar-header {
+      height: $navbar-height;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 16px;
+      // padding-right: 16px;
+   }
+
+   & .sidebar-section {
+      padding-top: 5px;
+      padding-bottom: 5px;
+   }
+
+   & .sidebar-item {
+      padding: 8px 16px;
+   }
+
+   & .sidebar-list-item {
+      min-width: 35px;
+   }
+
+   width: $sidebar-width;
+}
