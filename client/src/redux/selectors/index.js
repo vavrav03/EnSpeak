@@ -3,3 +3,4 @@ export const getNotifications = (state) => {
 }
 
 export * from "redux/reducers/user";
+export * from "redux/reducers/rooms";

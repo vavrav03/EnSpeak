@@ -20,6 +20,8 @@ $sidebar-width: 200px;
    }
 
    & .sidebar-list-item {
+      color: inherit;
+      text-decoration: inherit;
       min-width: 35px;
    }
 

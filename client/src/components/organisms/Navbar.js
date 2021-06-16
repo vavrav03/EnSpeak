@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { notImplementedYet } from "redux/actions/error";
 import { attemptLogout } from "redux/actions/auth";
 
-function Navbar({ isSidebarOpen, menuButtonAction }) {
+function Navbar({ showNotImplementedYet, isSidebarOpen, menuButtonAction }) {
    return (
       <AppBar position="static" className="navbar">
          <Toolbar>
@@ -31,17 +31,21 @@ function Navbar({ isSidebarOpen, menuButtonAction }) {
                </div>
 
                <div className={"center-children children-margin-left-10"}>
-                  <IconButton aria-label="show 17 new notifications" color="inherit">
+                  <IconButton
+                     onClick={showNotImplementedYet}
+                     aria-label="show 17 new notifications"
+                     color="inherit"
+                  >
                      <Badge badgeContent={17} color="secondary">
                         <NotificationsIcon />
                      </Badge>
                   </IconButton>
                   <UserNavbarCard
-                     // firstName={"Vladimír"}
-                     // lastName={"Vávra"}
-                     // role={"admin"}
-                     // imageUrl={"https://picsum.photos/200"}
-                     // status={"online"}
+                  // firstName={"Vladimír"}
+                  // lastName={"Vávra"}
+                  // role={"admin"}
+                  // imageUrl={"https://picsum.photos/200"}
+                  // status={"online"}
                   />
                </div>
             </Grid>
@@ -53,7 +57,6 @@ function Navbar({ isSidebarOpen, menuButtonAction }) {
 const mapDispatchToProps = (dispatch) => {
    return {
       showNotImplementedYet: () => dispatch(notImplementedYet()),
-      attemptLogout: () => dispatch(attemptLogout()),
    };
 };
 

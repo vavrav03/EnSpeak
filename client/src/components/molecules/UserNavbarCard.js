@@ -13,8 +13,7 @@ import { connect } from "react-redux";
 import { getUser } from "redux/reducers/user";
 
 function UserNavbarCard({
-   firstName,
-   lastName,
+   fullName,
    role,
    status,
    profilePicture,
@@ -37,7 +36,7 @@ function UserNavbarCard({
       <div className="user-navbar-card">
          <Button onClick={handleClick}>
             <div className="user-info-container">
-               <div className="user-name">{`${firstName} ${lastName}`}</div>
+               <div className="user-name">{`${fullName}`}</div>
                <div className="user-role">{role}</div>
             </div>
             <UserAvatar imageUrl={profilePicture} status={status}></UserAvatar>
@@ -90,8 +89,7 @@ function UserNavbarCard({
 const mapStateToProps = (state) => {
    const user = getUser(state);
    return {
-      firstName: user.first_name,
-      lastName: user.last_name,
+      fullName: user.full_name || `${user.first_name} ${user.last_name}`,
       profilePicture: user.profile_picture,
       status: user.status,
       role: user.role

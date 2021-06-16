@@ -1,7 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const { requireAuth } = require("../middleware/auth");
-const { User } = require("../database/schemas");
+const { requireAuth } = require("/src/middleware/auth");
+const { User } = require("/src/database/schemas");
+const { updateUserStatus } = require("/src/database/utils")
 
 const router = express.Router();
 
@@ -48,12 +49,5 @@ router.patch("/", requireAuth, (req, res) => {
    } else if (req.body.status === "offline") {
       newStatus = "offline";
    }
-   const user = User.findByIdAndUpdate(
-      req.user._id ,
-      {$set:{ status: newStatus }},
-      {new: true},
-      function (err, user) {
-         res.send({user: user});
-      }
-   );
+   updateUserStatus(req.user._id, newStatus, (err, user) => res.send({user: user}))
 });

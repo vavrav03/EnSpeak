@@ -12,6 +12,8 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import blue from "@material-ui/core/colors/blue";
 import { getNotifications } from "redux/selectors";
 import { attemptUpdateUser } from "redux/actions/user";
+import RoomsPage from "components/pages/RoomsPage";
+import OffersPage from "components/pages/OffersPage";
 
 const theme = createMuiTheme({
    typography: {
@@ -37,6 +39,8 @@ function App({ history, store, notifications, isLoading, email, attemptUpdateUse
                   <div className="main">
                      <Switch>
                         <Route exact path="/" component={HomePage} />
+                        <Route exact path="/offers" component={OffersPage} />
+                        <Route exact path="/rooms" component={RoomsPage} />
                         <Route path="/login" component={SignInPage} />
                         <Route path="/register" component={SignUpPage} />
                      </Switch>

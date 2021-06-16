@@ -1,0 +1,22 @@
+.offer-container {
+   width: 100%;
+}
+
+.offer {
+   margin: 30px;
+   display: flex;
+   flex-direction: row;
+   width: 300px;
+   height: 80px;
+   border: 1px red solid;
+
+   padding-left: 5px;
+}
+
+.offer > div {
+   flex: 1 1 auto;
+   border: 1px red solid;
+   text-align: center;
+
+   margin: 5px; /* and that, will result in a 10px gap */
+}

@@ -8,11 +8,9 @@ const userSchema = new Schema(
    {
       first_name: {
          type: String,
-         required: true,
       },
       last_name: {
          type: String,
-         required: true,
       },
       email: {
          type: String,
@@ -97,7 +95,7 @@ userSchema.methods.hashPassword = function () {
          if (err1) {
             reject(err1);
          }
-         console.log(this.auth.local.password, salt)
+         console.log(this.auth.local.password, salt);
          bcrypt.hash(this.auth.local.password, salt, (err2, hash) => {
             if (err2) {
                reject(err2);
@@ -115,4 +113,4 @@ userSchema.methods.toResponseObject = function () {
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = User ;

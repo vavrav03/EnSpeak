@@ -1,6 +1,7 @@
 const express = require("express");
 const passport = require("passport");
-const { User } = require("../database/schemas");
+const { User} = require("/src/database/utils");
+const {updateUserStatus} = require('/src/database/utils')
 
 const router = express.Router();
 
@@ -70,7 +71,7 @@ router.get(
    })
 );
 router.get("/google/callback", passport.authenticate("google"), (req, res) => {
-   res.redirect("/profile");
+   res.redirect("/");
 });
 
 router.get(
@@ -80,16 +81,11 @@ router.get(
    })
 );
 router.get("/facebook/callback", passport.authenticate("facebook"), (req, res) => {
-   res.redirect("/profile");
+   res.redirect("/");
 });
 
 router.post("/logout", (req, res) => {
-   const user = User.findByIdAndUpdate(
-      req.user._id,
-      { $set: { status: "offline" } },
-      { new: true },
-      function (err, user) {}
-   );
+   updateUserStatus(req.user._id, "offline");
    req.session.destroy((err) => {
       if (err) {
          res.status(400).send({ message: "Logout failed", err });

@@ -2,6 +2,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const { User } = require("/src/database/schemas");
+const { updateUserStatus } = require("/src/database/utils");
 
 // const Strategies = module.exports;
 const Strategies = {};
@@ -27,7 +28,7 @@ Strategies.local = new LocalStrategy(
          if (!user.isPasswordValid(password)) {
             return done(null, false, { message: "Incorrect email or password" });
          }
-         return done(null, user);
+         updateUserStatus(user.id, "online", (err, user) => done(null, user));
       });
    }
 );
@@ -40,6 +41,7 @@ Strategies.google = new GoogleStrategy(
       proxy: true,
    },
    (accessToken, refreshToken, profile, done) => {
+      console.log(profile);
       const { id, emails, name, photos } = profile;
       const email = emails[0].value;
       const { givenName, familyName } = name;
@@ -54,8 +56,7 @@ Strategies.google = new GoogleStrategy(
                currentUser.profile_picture = profilePicture;
                currentUser.save();
             }
-
-            return done(null, currentUser);
+            updateUserStatus(currentUser.id, "online", (err, user) => done(null, user));
          } else {
             const newUser = new User({
                email: email,
@@ -74,7 +75,7 @@ Strategies.google = new GoogleStrategy(
                if (err) {
                   throw err;
                }
-               return done(null, newUser);
+               updateUserStatus(currentUser.id, "online", (err, user) => done(null, user));
             });
          }
       });
@@ -104,8 +105,8 @@ Strategies.facebook = new FacebookStrategy(
                currentUser.profile_picture = profilePicture;
                currentUser.save();
             }
-
-            return done(null, currentUser);
+            
+            updateUserStatus(currentUser.id, "online", (err, user) => done(null, user));
          } else {
             const newUser = new User({
                email: email,
@@ -123,8 +124,7 @@ Strategies.facebook = new FacebookStrategy(
             newUser.save((err) => {
                if (err) {
                   throw err;
-               }
-               return done(null, newUser);
+               }updateUserStatus(currentUser.id, "online", (err, user) => done(null, user));
             });
          }
       });

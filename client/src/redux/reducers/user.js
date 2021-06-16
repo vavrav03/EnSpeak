@@ -1,4 +1,3 @@
-// import update from "immutability-helper";
 import { LOGIN_USER, LOGOUT_USER } from "../actions/auth";
 import { UPDATE_USER, SET_STATUS, START_LOADING_USER } from "../actions/user";
 import _ from "lodash";

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Hidden from "@material-ui/core/Hidden";
-import {Navbar} from "components/organisms/Navbar";
+import Navbar from "components/organisms/Navbar";
 import Sidebar from "components/organisms/Sidebar";
 
 function NormalPage(props) {
    const { children } = props;
-   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
    const openSidebar = () => {
       setIsSidebarOpen(true);
