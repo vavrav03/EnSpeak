@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { NormalPage } from "components/templates/NormalPage";
-import MeetingOffer from "components/molecules/MeetingOffer";
 import OfferTable from "components/organisms/Tables/OfferTable";
 import { attemptGetRooms } from "redux/actions/rooms";
 import { connect } from "react-redux";

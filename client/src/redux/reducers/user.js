@@ -1,6 +1,5 @@
 import { LOGIN_USER, LOGOUT_USER } from "../actions/auth";
 import { UPDATE_USER, SET_STATUS, START_LOADING_USER } from "../actions/user";
-import _ from "lodash";
 
 export default function user(user = {isLoading: true}, action) {
    switch (action.type) {

@@ -1,4 +1,3 @@
-import _ from "lodash";
 
 import {SET_ROOMS, ADD_ROOM} from 'redux/actions/rooms';
 

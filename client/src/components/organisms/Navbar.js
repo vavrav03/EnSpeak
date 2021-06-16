@@ -10,7 +10,6 @@ import Grid from "@material-ui/core/Grid";
 import UserNavbarCard from "components/molecules/UserNavbarCard";
 import { connect } from "react-redux";
 import { notImplementedYet } from "redux/actions/error";
-import { attemptLogout } from "redux/actions/auth";
 
 function Navbar({ showNotImplementedYet, isSidebarOpen, menuButtonAction }) {
    return (
