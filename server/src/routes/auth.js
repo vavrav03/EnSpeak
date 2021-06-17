@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
-const { User} = require("/src/database/utils");
-const {updateUserStatus} = require('/src/database/utils')
+const { User } = require("/src/database/schemas");
+const { updateUserStatus } = require("/src/database/utils");
 
 const router = express.Router();
 
